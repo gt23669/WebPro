@@ -13,6 +13,16 @@ namespace TournamentTracker.Controllers
             return View();
         }
 
+        public ActionResult Active()
+        {
+            return View();
+        }
+
+        public ActionResult Previous()
+        {
+            return View();
+        }
+
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
