@@ -16,6 +16,7 @@ function spin() {
                 window.clearInterval(interval);
                 myHtml[0].style.transform = "rotate(0deg)";
                 spinning = !spinning;
+                location.reload();
             }
             else {
                 interval = setInterval(turn, 1);
