@@ -8,6 +8,9 @@ namespace TournamentTrackerServices.Model
 {
     public class Tournament
     {
-
+        public string Name { get; set; }
+        public int Type { get; set; }
+        public string Game { get; set; }
+        public List<User> PlayerList { get; set; }
     }
 }

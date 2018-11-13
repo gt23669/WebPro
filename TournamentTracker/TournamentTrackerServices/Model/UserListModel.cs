@@ -6,10 +6,8 @@ using System.Threading.Tasks;
 
 namespace TournamentTrackerServices.Model
 {
-    public class User
+    public class UserListModel
     {
-        public string Name { get; set; }
-        public int Wins { get; set; }
-        public int Loses { get; set; }
+        public List<User> UserList { get; set; }
     }
 }
