@@ -70,7 +70,9 @@
   <ItemGroup>
     <Compile Include="ITrackerService.cs" />
     <Compile Include="Model\Tournament.cs" />
+    <Compile Include="Model\TournamentListModel.cs" />
     <Compile Include="Model\User.cs" />
+    <Compile Include="Model\UserListModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
