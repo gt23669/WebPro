@@ -12,5 +12,15 @@ namespace TournamentTracker.Controllers
         {
             return View();
         }
+
+        public ActionResult Active()
+        {
+            return View();
+        }
+
+        public ActionResult Previous()
+        {
+            return View();
+        }
     }
 }
