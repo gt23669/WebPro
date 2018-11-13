@@ -310,6 +310,7 @@
     <Content Include="bin\TournamentTracker.dll" />
     <Content Include="bin\TournamentTracker.pdb" />
     <Content Include="bin\WebGrease.dll" />
+    <Content Include="Content\Active_Previous.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -397,6 +398,12 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TournamentTrackerServices\TournamentTrackerServices.csproj">
+      <Project>{20629e1a-7e63-4e8e-a72d-47d706aaf896}</Project>
+      <Name>TournamentTrackerServices</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

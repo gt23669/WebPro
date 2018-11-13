@@ -13,5 +13,6 @@ namespace TournamentTrackerServices
         Tournament GetTournamentByName(string name);
         UserListModel GetAllUsers();
         UserListModel GetTournamentUsers();
+        TournamentListModel CreateFakeTournamentData();
     }
 }

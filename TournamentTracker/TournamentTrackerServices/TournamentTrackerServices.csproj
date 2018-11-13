@@ -74,6 +74,7 @@
     <Compile Include="Model\User.cs" />
     <Compile Include="Model\UserListModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\TrackerServices.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

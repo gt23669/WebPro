@@ -1,13 +1,41 @@
-﻿
+﻿@model TournamentTrackerServices.Model.TournamentListModel
+
 @{
-//ViewBag.Title = "Home Page";
+    //ViewBag.Title = "Active";
 }
 
-<div class="Opening">
-    <h1>
-        Active Tournaments:
-    </h1>
-    <p>
-        There are no currently Active Tournaments.
-    </p>
-</div>
+@if (Model != null)
+{
+    foreach (var item in Model.TournamentList)
+    {
+        <div class="ModelContainer">
+            <div>
+                <p>Tournament Name: @item.Name</p>
+                <p>Tournament Game: @item.Game</p>
+                <p>Players Involved:</p>
+                <ol>
+
+                    @foreach (var person in item.PlayerList)
+                    {
+                        <li>
+                            <div>
+                                <p>@person.FirstName @person.LastName with a @person.Wins/@person.Loses win-loss ratio</p>
+                            </div>
+                        </li>
+                    }
+                </ol>
+            </div>
+        </div>
+    }
+}
+else
+{
+    <div class="Opening">
+        <h1>
+            Active Tournaments:
+        </h1>
+        <p>
+            There are no currently Active Tournaments.
+        </p>
+    </div>
+}
