@@ -6,36 +6,8 @@
 
 @if (Model != null)
 {
-    foreach (var item in Model.TournamentList)
-    {
-        <div class="ModelContainer">
-            <div>
-                <p>Tournament Name: @item.Name</p>
-                <p>Tournament Game: @item.Game</p>
-                <p>Players Involved:</p>
-                <ol>
-
-                    @foreach (var person in item.PlayerList)
-                    {
-                        <li>
-                            <div>
-                                <p>@person.FirstName @person.LastName with a @person.Wins/@person.Loses win-loss ratio</p>
-                            </div>
-                        </li>
-                    }
-                </ol>
-            </div>
-        </div>
-    }
-}
-else
-{
-    <div class="Closing">
-        <h1>
-            Previous Tournaments:
-        </h1>
-        <p>
-            There are no Previous Tournaments.
-        </p>
-    </div>
+    <h1>
+        Previous Tournaments:
+    </h1>
+    Html.RenderPartial("_TournamentViewPartial", Model);
 }

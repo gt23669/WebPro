@@ -382,6 +382,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Home\Previous.cshtml" />
     <Content Include="Views\Home\Active.cshtml" />
+    <Content Include="Views\Shared\_TournamentViewPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

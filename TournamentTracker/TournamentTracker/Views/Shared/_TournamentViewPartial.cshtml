@@ -1,0 +1,39 @@
+﻿@model TournamentTrackerServices.Model.TournamentListModel
+
+@{
+    ViewBag.Title = "Tournament Details";
+}
+
+@if (Model != null)
+{
+    foreach (var item in Model.TournamentList)
+    {
+        <div class="ModelContainer">
+            <div>
+                <p>Tournament Name: @item.Name</p>
+                <p>Tournament Game: @item.Game</p>
+                <p>Players Involved:</p>
+                <ol>
+
+                    @foreach (var person in item.PlayerList)
+                    {
+                        <li>
+                            <div>
+                                <p>@person.FirstName @person.LastName with a @person.Wins/@person.Loses win-loss ratio</p>
+                            </div>
+                        </li>
+                    }
+                </ol>
+            </div>
+        </div>
+    }
+}
+else
+{
+    <div>
+        <p>
+            There are no tournaments to display.
+        </p>
+    </div>
+}
+
