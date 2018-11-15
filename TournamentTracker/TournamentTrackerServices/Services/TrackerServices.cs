@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TournamentTrackerServices.Enums;
 using TournamentTrackerServices.Model;
 
 namespace TournamentTrackerServices.Services
@@ -40,7 +41,7 @@ namespace TournamentTrackerServices.Services
             {
                 Name = "Test1",
                 Game = "Poker",
-                Type = 0,
+                Type = (TournamentTypes)0,
                 PlayerList = userList.UserList
 
             };
@@ -50,7 +51,7 @@ namespace TournamentTrackerServices.Services
             {
                 Name = "Test2",
                 Game = "Smash",
-                Type = 1,
+                Type = (TournamentTypes)1,
                 PlayerList = userList.UserList
             };
             results.TournamentList.Add(tournament);
@@ -58,7 +59,7 @@ namespace TournamentTrackerServices.Services
             {
                 Name = "Test3",
                 Game = "League",
-                Type = 2,
+                Type = (TournamentTypes)2,
                 PlayerList = userList.UserList
             };
             results.TournamentList.Add(tournament);

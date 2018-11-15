@@ -1,6 +1,7 @@
 ﻿var rngBase;
 
 function spin() {
+    console.log("Press ` for vertigo.");
     rngBase = 12;
     spinning = false;
     myHtml = document.getElementsByTagName("body");
