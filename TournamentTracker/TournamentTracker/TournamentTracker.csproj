@@ -310,7 +310,6 @@
     <Content Include="bin\TournamentTracker.dll" />
     <Content Include="bin\TournamentTracker.pdb" />
     <Content Include="bin\WebGrease.dll" />
-    <Content Include="Content\Active_Previous.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />

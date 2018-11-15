@@ -1,6 +1,8 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
+    background-color: #1F3140;
+    color: #F2AC57;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -22,3 +24,20 @@ select,
 textarea {
     max-width: 280px;
 }
+
+hr{
+    clear:both;
+    margin-top: 50px;
+}
+
+.ModelContainer {
+    background-color: #273940;
+    border: solid 1px;
+    padding: 2px;
+    margin: 10px;
+
+    width: auto;
+    height:150px;
+    /*float: left;*/
+}
+

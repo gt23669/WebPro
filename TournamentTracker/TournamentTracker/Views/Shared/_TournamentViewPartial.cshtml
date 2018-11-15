@@ -10,20 +10,23 @@
     {
         <div class="ModelContainer">
             <div>
-                <p>Tournament Name: @item.Name</p>
-                <p>Tournament Game: @item.Game</p>
-                <p>Players Involved:</p>
-                <ol>
-
-                    @foreach (var person in item.PlayerList)
-                    {
-                        <li>
-                            <div>
-                                <p>@person.FirstName @person.LastName with a @person.Wins/@person.Loses win-loss ratio</p>
-                            </div>
-                        </li>
-                    }
-                </ol>
+                <div class="ContainerNameBlock">
+                    <h3>Tournament Name: @item.Name</h3>
+                    <p>Tournament Game: @item.Game</p>
+                </div>
+                <div class="ContainerPlayerListBlock">
+                    <p>Players Involved: @item.PlayerList.Count()</p>
+                    @*<Ul>
+                        @foreach (var person in item.PlayerList)
+                        {
+                            <li>
+                                <div>
+                                    <p>@person.FirstName @person.LastName with a @person.Wins/@person.Loses win-loss ratio</p>
+                                </div>
+                            </li>
+                        }
+                    </Ul>*@
+                </div>
             </div>
         </div>
     }
