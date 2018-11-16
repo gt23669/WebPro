@@ -69,6 +69,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ITrackerService.cs" />
+    <Compile Include="Model\ScoreCard.cs" />
     <Compile Include="Model\Tournament.cs" />
     <Compile Include="Model\TournamentListModel.cs" />
     <Compile Include="Enums\TournamentTypes.cs" />

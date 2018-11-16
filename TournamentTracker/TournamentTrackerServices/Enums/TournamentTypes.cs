@@ -12,4 +12,19 @@ namespace TournamentTrackerServices.Enums
         DoubleElimination,
         RoundRobin
     }
+
+    public enum SecurityLevels
+    {
+        Open,
+        FriendsOnly,
+        InviteOnly
+    }
+
+    public enum Status
+    {
+        Open,
+        InProgress,
+        Full,
+        Ended
+    }
 }
