@@ -400,6 +400,10 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MongoDAL\MongoDAL.csproj">
+      <Project>{d3b14d5f-c294-4cca-9a1c-f0f870866fb5}</Project>
+      <Name>MongoDAL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TournamentTrackerServices\TournamentTrackerServices.csproj">
       <Project>{20629e1a-7e63-4e8e-a72d-47d706aaf896}</Project>
       <Name>TournamentTrackerServices</Name>
