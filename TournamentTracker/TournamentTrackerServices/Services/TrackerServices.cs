@@ -41,7 +41,7 @@ namespace TournamentTrackerServices.Services
             {
                 Name = "Test1",
                 Game = "Poker",
-                Type = (TournamentTypes)0,
+                EliminationType = (TournamentTypes)0,
                 PlayerList = userList.UserList
 
             };
@@ -51,7 +51,7 @@ namespace TournamentTrackerServices.Services
             {
                 Name = "Test2",
                 Game = "Smash",
-                Type = (TournamentTypes)1,
+                EliminationType = (TournamentTypes)1,
                 PlayerList = userList.UserList
             };
             results.TournamentList.Add(tournament);
@@ -59,7 +59,7 @@ namespace TournamentTrackerServices.Services
             {
                 Name = "Test3",
                 Game = "League",
-                Type = (TournamentTypes)2,
+                EliminationType = (TournamentTypes)2,
                 PlayerList = userList.UserList
             };
             results.TournamentList.Add(tournament);
