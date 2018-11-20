@@ -27,6 +27,12 @@ namespace TournamentTrackerServices.Model
 
 
         #region Constructors
+
+        public Tournament()
+        {
+
+        }
+
         public Tournament(string name, TournamentTypes eliminationType, SecurityLevels securityType, List<User> admins)
         {
             Name = name;
