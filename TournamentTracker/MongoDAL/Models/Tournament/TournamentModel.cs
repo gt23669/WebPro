@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TournamentTrackerServices.Enums;
-using TournamentTrackerServices.Model;
 
 namespace MongoDAL.Models
 {

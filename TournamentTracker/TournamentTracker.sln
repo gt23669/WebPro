@@ -5,8 +5,6 @@ VisualStudioVersion = 15.0.28010.2050
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TournamentTracker", "TournamentTracker\TournamentTracker.csproj", "{A313CC30-5C18-427F-9BA3-CF6E55B7F16A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TournamentTracker.Tests", "TournamentTracker.Tests\TournamentTracker.Tests.csproj", "{C0794885-14B5-442E-A8B5-4127CDCE2F1C}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TournamentTrackerServices", "TournamentTrackerServices\TournamentTrackerServices.csproj", "{20629E1A-7E63-4E8E-A72D-47D706AAF896}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MongoDAL", "MongoDAL\MongoDAL.csproj", "{D3B14D5F-C294-4CCA-9A1C-F0F870866FB5}"
@@ -21,10 +19,6 @@ Global
 		{A313CC30-5C18-427F-9BA3-CF6E55B7F16A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A313CC30-5C18-427F-9BA3-CF6E55B7F16A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A313CC30-5C18-427F-9BA3-CF6E55B7F16A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C0794885-14B5-442E-A8B5-4127CDCE2F1C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C0794885-14B5-442E-A8B5-4127CDCE2F1C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C0794885-14B5-442E-A8B5-4127CDCE2F1C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C0794885-14B5-442E-A8B5-4127CDCE2F1C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{20629E1A-7E63-4E8E-A72D-47D706AAF896}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{20629E1A-7E63-4E8E-A72D-47D706AAF896}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{20629E1A-7E63-4E8E-A72D-47D706AAF896}.Release|Any CPU.ActiveCfg = Release|Any CPU
