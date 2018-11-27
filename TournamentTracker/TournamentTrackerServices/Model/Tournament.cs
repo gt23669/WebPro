@@ -9,6 +9,7 @@ namespace TournamentTrackerServices.Model
 {
     public class Tournament
     {
+        public string OwnerEmail { get; set; }
         public string Name { get; set; }
         public TournamentTypes EliminationType { get; set; }
         public SecurityLevels SecurityType { get; set; }
