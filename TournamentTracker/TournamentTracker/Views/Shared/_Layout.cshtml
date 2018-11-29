@@ -25,6 +25,17 @@
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("Active Tournaments", "Active", "Home")</li>
                     <li>@Html.ActionLink("Past Tournaments", "Previous", "Home")</li>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        if (!User.IsInRole("Banned"))
+                        {
+                            <li>@Html.ActionLink("Create Tournament", "Index", "Home")</li>
+                        }
+                        if (User.IsInRole("Admin"))
+                        {
+                            <li>@Html.ActionLink("Manage Users", "UserList", "Account")</li>
+                        }
+                    }
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

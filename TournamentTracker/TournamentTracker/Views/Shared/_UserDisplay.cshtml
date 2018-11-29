@@ -1,0 +1,65 @@
+﻿@using TournamentTracker.Data
+@model AspNetUser
+
+<div class="jumbotron">
+    <h2>User Name: @Model.Email</h2>
+    <h4>User Id: @Model.Id</h4>
+
+    @{
+        var roleString = "";
+
+        if (Model.AspNetRoles.Count() == 0)
+        {
+            roleString = "User";
+        }
+        else
+        {
+            using (var db = new TournamentTrackerEntities())
+            {
+                foreach (AspNetRole role in Model.AspNetRoles)
+                {
+                    var rawRole = db.AspNetRoles.Single(r => r.Id == role.Id);
+                    if (rawRole.Name == "Admin")
+                    {
+                        roleString = "Admin";
+                    }
+                    if (rawRole.Name == "Banned")
+                    {
+                        roleString = "Banned";
+                    }
+                }
+            }
+        }
+        <h4>Roles: @roleString</h4>
+    }
+
+    @if (Model.AspNetRoles.Count() == 0)
+    {
+        <a class="btn btn-default" href="~/Account/PromoteUser?id=@Model.Id" formaction="post">Promote User</a>
+        <a class="btn btn-default" href="~/Account/BanUser?id=@Model.Id" formaction="post">Ban User</a>
+        <a class="btn btn-default" href="~/Account/DeleteUser?id=@Model.Id" formaction="post">Delete User</a>
+    }
+    else
+    {
+        using (var db = new TournamentTrackerEntities())
+        {
+            foreach (AspNetRole role in Model.AspNetRoles)
+            {
+                var rawRole = db.AspNetRoles.Single(r => r.Id == role.Id);
+                if (rawRole.Name == "Admin")
+                {
+                    if (User.Identity.Name != Model.Email)
+                    {
+                        <a class="btn btn-default" href="~/Account/DemoteUser?id=@Model.Id" formaction="post">Demote User</a>
+                        <a class="btn btn-default" href="~/Account/DeleteUser?id=@Model.Id" formaction="post">Delete User</a>
+                    }
+                }
+                if (rawRole.Name == "Banned")
+                {
+                    <a class="btn btn-default" href="~/Account/PardonUser?id=@Model.Id" formaction="post">Pardon User</a>
+                    <a class="btn btn-default" href="~/Account/DeleteUser?id=@Model.Id" formaction="post">Delete User</a>
+                }
+            }
+        }
+    }
+</div>

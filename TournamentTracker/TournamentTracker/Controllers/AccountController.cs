@@ -8,13 +8,16 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
+using TournamentTracker.Data;
 using TournamentTracker.Models;
+using TournamentTracker.Services;
 
 namespace TournamentTracker.Controllers
 {
     [Authorize]
     public class AccountController : Controller
     {
+        public EFAuthService authData = new EFAuthService();
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
@@ -50,6 +53,60 @@ namespace TournamentTracker.Controllers
             {
                 _userManager = value;
             }
+        }
+
+        [Authorize(Roles = "Admin")]
+        public ActionResult UserList()
+        {
+            return View(authData.GetAllUsers());
+        }
+
+        [Authorize(Roles = "Admin")]
+        public ActionResult PromoteUser(string id)
+        {
+            AspNetUser user = authData.GetUserFromId(id);
+            UserManager.AddToRole(user.Id, "Admin");
+            authData.UpdateUser(user);
+
+            return Redirect("~/Account/UserList");
+        }
+
+        [Authorize(Roles = "Admin")]
+        public ActionResult DemoteUser(string id)
+        {
+            AspNetUser user = authData.GetUserFromId(id);
+            UserManager.RemoveFromRole(user.Id, "Admin");
+            authData.UpdateUser(user);
+
+            return Redirect("~/Account/UserList");
+        }
+
+        [Authorize(Roles = "Admin")]
+        public ActionResult BanUser(string id)
+        {
+            AspNetUser user = authData.GetUserFromId(id);
+            UserManager.AddToRole(user.Id, "Banned");
+            authData.UpdateUser(user);
+
+            return Redirect("~/Account/UserList");
+        }
+
+        [Authorize(Roles = "Admin")]
+        public ActionResult PardonUser(string id)
+        {
+            AspNetUser user = authData.GetUserFromId(id);
+            UserManager.RemoveFromRole(user.Id, "Banned");
+            authData.UpdateUser(user);
+
+            return Redirect("~/Account/UserList");
+        }
+
+        [Authorize(Roles = "Admin")]
+        public ActionResult DeleteUser(string id)
+        {
+            authData.DeleteUserById(id);
+
+            return Redirect("~/Account/UserList");
         }
 
         //

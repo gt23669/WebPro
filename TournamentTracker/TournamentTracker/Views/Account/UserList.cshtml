@@ -1,0 +1,14 @@
+﻿@using TournamentTracker.Data
+@model List<AspNetUser>
+
+<h2>User List:</h2>
+@{ 
+    using (var db = new TournamentTrackerEntities())
+    {
+        foreach (AspNetUser user in db.AspNetUsers)
+        {
+            Html.RenderPartial("_UserDisplay", user);
+        }
+    }
+}
+
