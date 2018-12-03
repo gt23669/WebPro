@@ -14,6 +14,7 @@ namespace MongoDAL
         public IMongoDatabase Database { get; set; }
         public IMongoCollection<BsonDocument> ActiveCollection { get; set; }
         public IMongoCollection<BsonDocument> InActiveCollection { get; set; }
+
         public MongoConnection()
         {
             var client = new MongoClient(connectionString);

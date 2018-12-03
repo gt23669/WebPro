@@ -1,4 +1,5 @@
-﻿using MongoDAL.Models;
+﻿using MongoDAL.Interfaces;
+using MongoDAL.Models;
 using MongoDB.Bson;
 using System;
 using System.Collections.Generic;
@@ -36,7 +37,7 @@ namespace MongoDAL.Services
         #endregion
         #region Read
 
-        public static TournamentListModel GetActiveTournament()
+        public static TournamentListModel GetAllActiveTournament()
         {
             TournamentListModel listModel = new TournamentListModel();
             TournamentModel model = new TournamentModel();
@@ -51,12 +52,44 @@ namespace MongoDAL.Services
             return listModel;
         }
 
+        public static TournamentListModel GetAllInactiveTournaments()
+        {
+            throw new NotImplementedException();
+        }
+
+        public static TournamentListModel GetAllTournaments()
+        {
+            throw new NotImplementedException();
+        }
+
+        public static TournamentListModel GetTournamentsByOwnerEmail(string ownerEmail)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static TournamentModel GetTournamentById(int tournamentId)
+        {
+            throw new NotImplementedException();
+        }
+
         #endregion
         #region Create
+        public static void CreateTournament(TournamentModel tournament)
+        {
+            throw new NotImplementedException();
+        }
         #endregion
         #region Modify
+        public static void ModifyTournamentById(int tournamentId, TournamentModel changeTo)
+        {
+            throw new NotImplementedException();
+        }
         #endregion
         #region Delete
+        public static void DeleteTournamentById(int tournamentId)
+        {
+            throw new NotImplementedException();
+        }
         #endregion
     }
 }

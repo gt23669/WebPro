@@ -61,6 +61,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Interfaces\IMongoService.cs" />
     <Compile Include="Models\Player\User.cs" />
     <Compile Include="Models\Player\UserListModel.cs" />
     <Compile Include="Models\Tournament\TournamentListModel.cs" />
