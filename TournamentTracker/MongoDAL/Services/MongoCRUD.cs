@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace MongoDAL.Services
 {
-    public class MongoCRUD
+    public static class MongoCRUD
     {
         #region HelperMethods
         private static TournamentModel ReturnModel(BsonDocument query)

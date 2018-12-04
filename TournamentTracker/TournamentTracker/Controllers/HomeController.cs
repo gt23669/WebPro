@@ -3,33 +3,32 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using TournamentTrackerServices;
-using TournamentTrackerServices.Services;
 using MongoDAL;
 using MongoDAL.Models;
+using MongoDAL.Services;
 
 namespace TournamentTracker.Controllers
 {
     public class HomeController : Controller
-    {
-        ITrackerService Services = new TrackerServices();
-
+    {  
         public ActionResult Index()
         {
             return View();
         }
         public ActionResult Active()
         {
-            var model = new TournamentListModel();
+            var model = MongoCRUD.GetAllActiveTournament();
 
-            return View(Services.CreateFakeTournamentData());
+            return View(model);
         }
         public ActionResult Previous()
         {
-            return View(Services.CreateFakeTournamentData());
+            var model = MongoCRUD.GetAllInactiveTournaments();
+
+            return View(model);
         }
 
-        public ActionResult Detail(TournamentTrackerServices.Model.Tournament model)
+        public ActionResult Detail(TournamentModel model)
         {
             return View(model);
         }
