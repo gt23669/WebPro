@@ -28,5 +28,10 @@ namespace TournamentTracker.Controllers
         {
             return View(Services.CreateFakeTournamentData());
         }
+
+        public ActionResult Detail(TournamentTrackerServices.Model.Tournament model)
+        {
+            return View(model);
+        }
     }
 }

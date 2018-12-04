@@ -1,13 +1,17 @@
-﻿@model TournamentTrackerServices.Model.TournamentListModel
+﻿@using MongoDAL.Models
+@model TournamentListModel
 
 @{
     //ViewBag.Title = "Active";
 }
+<h1>
+    Active Tournaments:
+</h1>
 
 @if (Model != null)
 {
-    <h1>
-        Active Tournaments:
-    </h1>
-    Html.RenderPartial("_TournamentViewPartial", Model);
+    foreach(TournamentModel item in Model.TournamentList)
+    {
+        Html.RenderPartial("_TournamentViewPartial", item);
+    }
 }
