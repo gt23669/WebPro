@@ -15,7 +15,6 @@ namespace MongoDAL.Interfaces
 
         TournamentListModel GetAllActiveTournaments();
         TournamentListModel GetAllInactiveTournaments();
-        TournamentListModel GetAllTournaments();
         TournamentListModel GetTournamentsByOwnerEmail(string ownerEmail);
         TournamentTypes GetTournamentById(int tournamentId);
     }

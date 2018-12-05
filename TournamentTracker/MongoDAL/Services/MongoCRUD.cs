@@ -12,26 +12,28 @@ namespace MongoDAL.Services
     public class MongoCRUD
     {
         #region HelperMethods
-        private static TournamentModel ReturnModel(BsonDocument query)
+
+        private static BsonDocument UserToBson(User user)
         {
-            TournamentModel model = new TournamentModel()
-            {
-                Name = (string)query["Name"],
-                Game = (string)query["Game"],
-                //EliminationType = (TournamentTypes)query["Type"],
-            };
-            foreach (var player in query["Players"].AsBsonArray.ToList())
-            {
-                User person = new User()
-                {
-                    FirstName = (string)player[0],
-                    LastName = (string)player[1],
-                    Wins = (int)player[2],
-                    Loses = (int)player[3]
-                };
-                model.PlayerList.Add(person);
-            }
-            return model;
+            BsonDocument toReturn = new BsonDocument();
+
+            return toReturn;
+        }
+
+        private 
+
+        private static BsonDocument TournamentModelToBson(TournamentModel toChange)
+        {
+            BsonDocument toReturn = new BsonDocument();
+            
+            
+
+            return toReturn;
+        }
+
+        private static TournamentModel BsonToTournamentModel()
+        {
+            throw new NotImplementedException();
         }
 
         #endregion
@@ -57,11 +59,7 @@ namespace MongoDAL.Services
             throw new NotImplementedException();
         }
 
-        public static TournamentListModel GetAllTournaments()
-        {
-            throw new NotImplementedException();
-        }
-
+        
         public static TournamentListModel GetTournamentsByOwnerEmail(string ownerEmail)
         {
             throw new NotImplementedException();
