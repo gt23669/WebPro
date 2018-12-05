@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MongoDAL.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -28,12 +29,11 @@ namespace MongoDAL.Models
 
         #region Constructors
 
-        public Tournament()
+        public TournamentModel()
         {
 
         }
-
-        public Tournament(string name, TournamentTypes eliminationType, SecurityLevels securityType, List<User> admins)
+        public TournamentModel(string name, TournamentTypes eliminationType, SecurityLevels securityType, List<User> admins)
         {
             Name = name;
             EliminationType = eliminationType;
@@ -42,7 +42,7 @@ namespace MongoDAL.Models
             StatusType = Status.Open;
 
         }
-        public Tournament(string name, TournamentTypes eliminationType, SecurityLevels securityType, User admin)
+        public TournamentModel(string name, TournamentTypes eliminationType, SecurityLevels securityType, User admin)
         {
             Name = name;
             EliminationType = eliminationType;
@@ -54,7 +54,7 @@ namespace MongoDAL.Models
             StatusType = Status.Open;
 
         }
-        public Tournament(string name, TournamentTypes eliminationType, SecurityLevels securityType, User admin, string game)
+        public TournamentModel(string name, TournamentTypes eliminationType, SecurityLevels securityType, User admin, string game)
         {
             Name = name;
             EliminationType = eliminationType;
@@ -67,7 +67,7 @@ namespace MongoDAL.Models
             StatusType = Status.Open;
 
         }
-        public Tournament(string name, TournamentTypes eliminationType, SecurityLevels securityType, User admin, string game, List<User> players)
+        public TournamentModel(string name, TournamentTypes eliminationType, SecurityLevels securityType, User admin, string game, List<User> players)
         {
             Name = name;
             EliminationType = eliminationType;
