@@ -64,6 +64,7 @@
     <Compile Include="Interfaces\IMongoService.cs" />
     <Compile Include="Models\Player\User.cs" />
     <Compile Include="Models\Player\UserListModel.cs" />
+    <Compile Include="Models\Tournament\ScoreCard.cs" />
     <Compile Include="Models\Tournament\TournamentListModel.cs" />
     <Compile Include="Models\Tournament\TournamentModel.cs" />
     <Compile Include="Models\Tournament\TournamentTypes.cs" />
