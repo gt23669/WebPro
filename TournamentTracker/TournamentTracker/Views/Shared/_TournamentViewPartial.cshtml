@@ -1,4 +1,5 @@
-﻿@model TournamentTrackerServices.Model.TournamentListModel
+﻿@using MongoDAL.Models
+@model TournamentModel
 
 @{
     ViewBag.Title = "Tournament Details";
@@ -6,37 +7,19 @@
 
 @if (Model != null)
 {
-    foreach (var item in Model.TournamentList)
-    {
         <div class="ModelContainer">
             <div>
                 <div class="ContainerNameBlock">
-                    <h3>Tournament Name: @item.Name</h3>
-                    <p>Tournament Game: @item.Game</p>
+                    <a href="~/Home/Detail?name=@Model">
+                        <h3>Tournament Name: @Model</h3>
+                    </a>
+                    <p>Tournament Game: @Model.Game</p>
                 </div>
                 <div class="ContainerPlayerListBlock">
-                    <p>Players Involved: @item.PlayerList.Count()</p>
-                    @*<Ul>
-                        @foreach (var person in item.PlayerList)
-                        {
-                            <li>
-                                <div>
-                                    <p>@person.FirstName @person.LastName with a @person.Wins/@person.Loses win-loss ratio</p>
-                                </div>
-                            </li>
-                        }
-                    </Ul>*@
+                    <p>Players Involved: @Model.PlayerList.Count()</p>
                 </div>
             </div>
         </div>
-    }
 }
-else
-{
-    <div>
-        <p>
-            There are no tournaments to display.
-        </p>
-    </div>
-}
+
 
