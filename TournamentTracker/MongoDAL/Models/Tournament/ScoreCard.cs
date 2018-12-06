@@ -8,6 +8,11 @@ namespace MongoDAL.Model
 {
     public class ScoreCard
     {
+        public ScoreCard()
+        {
+            RoundAndScores = new List<KeyValuePair<int, int>>();
+        }
+
         public List<KeyValuePair<int, int>> RoundAndScores { get; set; }
 
         public void AddScore(int round, int wins, int losses)

@@ -10,12 +10,12 @@ namespace MongoDAL.Interfaces
     interface IMongoService
     {
         void CreateTournament(TournamentModel tournament);
-        void DeleteTournamentById(int tournamentId);
-        void ModifyTournamentById(int tournamentId, TournamentModel changeTo);
+        void DeleteTournamentById(string tournamentId);
+        void ModifyTournamentById(string tournamentId, TournamentModel changeTo);
 
         TournamentListModel GetAllActiveTournaments();
         TournamentListModel GetAllInactiveTournaments();
         TournamentListModel GetTournamentsByOwnerEmail(string ownerEmail);
-        TournamentTypes GetTournamentById(int tournamentId);
+        TournamentTypes GetTournamentById(string tournamentId);
     }
 }

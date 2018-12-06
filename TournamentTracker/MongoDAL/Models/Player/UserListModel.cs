@@ -8,6 +8,6 @@ namespace MongoDAL.Models
 {
     public class UserListModel
     {
-        public List<User> UserList { get; set; }
+        public List<User> UserList { get; set; } = new List<User>();
     }
 }

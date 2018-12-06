@@ -2,6 +2,7 @@
 using MongoDAL.Model;
 using MongoDAL.Models;
 using MongoDB.Bson;
+using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +13,7 @@ namespace MongoDAL.Services
 {
     public static class MongoCRUD
     {
-        
+
 
         #region ModelToBson
         private static BsonDocument UserToBson(User user)
@@ -51,7 +52,7 @@ namespace MongoDAL.Services
                 temp["score"] = item.Value;
                 toReturn.Add(temp);
             }
-            
+
             return toReturn;
         }
 
@@ -73,7 +74,7 @@ namespace MongoDAL.Services
         {
             BsonDocument toReturn = new BsonDocument();
 
-            toReturn["touramentId"] = toChange.TournamentId;
+            toReturn["tournamentId"] = toChange.TournamentId;
             toReturn["ownerEmail"] = toChange.OwnerEmail;
             toReturn["name"] = toChange.Name;
             toReturn["eliminationType"] = (int)toChange.EliminationType;
@@ -88,22 +89,56 @@ namespace MongoDAL.Services
         }
 
         #endregion
-        
+
+        #region BsonToModel
+        private static KeyValuePair<User, ScoreCard> BsonToUserScoreCard(BsonValue document)
+        {
+            KeyValuePair<User, ScoreCard> toReturn;
+
+            User userToAdd = BsonToUser(document["user"]);
+            ScoreCard scoreCardToAdd = BsonToScoreCard((BsonArray)document["scoreCard"]);
+            toReturn = new KeyValuePair<User, ScoreCard>(userToAdd, scoreCardToAdd);
+
+            return toReturn;
+        }
+
+        private static ScoreCard BsonToScoreCard(BsonArray scoreCard)
+        {
+            ScoreCard toReturn = new ScoreCard();
+
+            foreach (var item in scoreCard)
+            {
+                KeyValuePair<int, int> toAdd = new KeyValuePair<int, int>((int)item["round"], (int)item["score"]);
+                toReturn.RoundAndScores.Add(toAdd);
+            }
+
+            return toReturn;
+        }
 
         private static User BsonToUser(BsonValue bson)
         {
             User toReturn = new User();
 
-            toReturn.Email = (string)bson["email"];
-            toReturn.FirstName = (string)bson["firstName"];
-            toReturn.LastName = (string)bson["lastName"];
+            toReturn.Email = (string)bson["email"] ?? "";
+            toReturn.FirstName = (string)bson["firstName"] ?? "";
+            toReturn.LastName = (string)bson["lastName"] ?? "";
             toReturn.Wins = (int)bson["wins"];
-            toReturn.Loses = (int)bson["loses"];
+            toReturn.Loses = (int)bson["losses"];
 
             return toReturn;
         }
+        private static List<KeyValuePair<User, ScoreCard>> BsonToPlayerWinLossTotals(BsonArray totals)
+        {
+            List<KeyValuePair<User, ScoreCard>> toReturn = new List<KeyValuePair<User, ScoreCard>>();
 
+            foreach (BsonValue item in totals)
+            {
+                KeyValuePair<User, ScoreCard> temp = BsonToUserScoreCard(item);
+                toReturn.Add(temp);
+            }
 
+            return toReturn;
+        }
         private static UserListModel BsonToUserListModel(BsonArray users)
         {
             UserListModel toReturn = new UserListModel();
@@ -115,62 +150,138 @@ namespace MongoDAL.Services
 
             return toReturn;
         }
-        
-        private static TournamentModel BsonToTournamentModel()
+
+        private static TournamentModel BsonToTournamentModel(BsonDocument bson)
         {
-            throw new NotImplementedException();
+            TournamentModel toReturn = new TournamentModel();
+
+            toReturn.TournamentId = (string)bson["tournamentId"] ?? "";
+            toReturn.OwnerEmail = (string)bson["ownerEmail"] ?? "";
+            toReturn.Name = (string)bson["name"] ?? "";
+            toReturn.EliminationType = (TournamentTypes)(int)bson["eliminationType"];
+            toReturn.SecurityType = (SecurityLevels)(int)bson["securityType"];
+            toReturn.Game = (string)bson["game"];
+            toReturn.ModeratorList = BsonToUserListModel((BsonArray)bson["moderatorList"]);
+            toReturn.PlayerList = BsonToUserListModel((BsonArray)bson["playerList"]);
+            toReturn.PlayerWinLossTotals = BsonToPlayerWinLossTotals((BsonArray)bson["playerWinLossTotals"]);
+            toReturn.StatusType = (Status)(int)bson["statusType"];
+            toReturn.PlayerLimit = (int)bson["playerLimit"];
+
+            return toReturn;
         }
-        
+
+        #endregion
+
+
         #region Read
+
 
         public static TournamentListModel GetAllActiveTournament()
         {
             TournamentListModel listModel = new TournamentListModel();
-            TournamentModel model = new TournamentModel();
 
-            using (var context = new MongoConnection())
+            using (var service = new MongoConnection())
             {
-                var query = context.ActiveCollection.Database;
-                //model = ReturnModel(query);
-                listModel.TournamentList.Add(model);
+                var results = service.ActiveCollection.Find(x => true).ToList();
+                foreach (var item in results)
+                {
+                    TournamentModel temp = BsonToTournamentModel(item);
+                    listModel.TournamentList.Add(temp);
+                }
             }
-
             return listModel;
         }
 
         public static TournamentListModel GetAllInactiveTournaments()
         {
-            throw new NotImplementedException();
+            TournamentListModel listModel = new TournamentListModel();
+
+            using (var service = new MongoConnection())
+            {
+                var results = service.InActiveCollection.Find(x => true).ToList();
+                foreach (var item in results)
+                {
+                    TournamentModel temp = BsonToTournamentModel(item);
+                    listModel.TournamentList.Add(temp);
+                }
+            }
+            return listModel;
         }
 
 
         public static TournamentListModel GetTournamentsByOwnerEmail(string ownerEmail)
         {
-            throw new NotImplementedException();
+            TournamentListModel listModel = new TournamentListModel();
+
+            using (var service = new MongoConnection())
+            {
+                var results = service.ActiveCollection.Find(x => x["ownerEmail"] == ownerEmail).ToList();
+                foreach (var item in results)
+                {
+                    TournamentModel temp = BsonToTournamentModel(item);
+                    listModel.TournamentList.Add(temp);
+                }
+                results = service.InActiveCollection.Find(x => x["ownerEmail"] == ownerEmail).ToList();
+                foreach (var item in results)
+                {
+                    TournamentModel temp = BsonToTournamentModel(item);
+                    listModel.TournamentList.Add(temp);
+                }
+            }
+            return listModel;
         }
 
-        public static TournamentModel GetTournamentById(int tournamentId)
+        public static TournamentModel GetTournamentById(string tournamentId)
         {
-            throw new NotImplementedException();
+            using (MongoConnection service = new MongoConnection())
+            {
+
+                var results = service.ActiveCollection.Find(c => ((string)c["tournamentId"]).ToUpper() == tournamentId.ToUpper() && !string.IsNullOrEmpty((string)c["tournamentId"])).ToList();
+                if (results.Count == 0)
+                {
+                    results = service.InActiveCollection.Find(c => ((string)c["tournamentId"]).ToUpper() == tournamentId.ToUpper() && !string.IsNullOrEmpty((string)c["tournamentId"])).ToList();
+
+                }
+                var result = (results.Count == 0) ? new BsonDocument() : results[0];
+                return BsonToTournamentModel(result);// BsonToTournamentModel(result);
+
+            }
+
         }
 
         #endregion
+
         #region Create
         public static void CreateTournament(TournamentModel tournament)
         {
-            throw new NotImplementedException();
+            using (MongoConnection service = new MongoConnection())
+            {
+                service.ActiveCollection.InsertOne(TournamentModelToBson(tournament));
+            }
         }
         #endregion
+
         #region Modify
         public static void ModifyTournamentById(int tournamentId, TournamentModel changeTo)
         {
             throw new NotImplementedException();
         }
         #endregion
+
         #region Delete
-        public static void DeleteTournamentById(int tournamentId)
+        public static void DeleteTournamentById(string tournamentId)
         {
-            throw new NotImplementedException();
+            using (MongoConnection service = new MongoConnection())
+            {
+                if(service.ActiveCollection.CountDocuments(x => x["tournamentId"] == tournamentId) != 0)
+                {
+                    service.ActiveCollection.FindOneAndDelete(x => x["tournamentId"] == tournamentId);
+                }
+                else if(service.InActiveCollection.CountDocuments(x => x["tournamentId"] == tournamentId) != 0)
+                {
+                    service.InActiveCollection.FindOneAndDelete(x => x["tournamentId"] == tournamentId);
+                }
+            }
         }
         #endregion
     }

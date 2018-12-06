@@ -9,6 +9,8 @@ namespace MongoDAL.Models
 {
     public class TournamentModel
     {
+        
+
         #region Properties
         public string TournamentId { get; set; }
         public string OwnerEmail { get; set; }

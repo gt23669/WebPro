@@ -9,6 +9,6 @@ namespace MongoDAL.Models
 {
     public class TournamentListModel
     {
-        public List<TournamentModel> TournamentList { get; set; }
+        public List<TournamentModel> TournamentList { get; set; } = new List<TournamentModel>();
     }
 }
