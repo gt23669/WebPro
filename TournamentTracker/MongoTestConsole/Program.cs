@@ -83,12 +83,17 @@ namespace MongoTestConsole
 
             };
 
+            //MongoCRUD.CreateTournament(model);
 
-            var result = MongoCRUD.GetTournamentsByOwnerEmail("dpcorum@yahoo.com");
+            //model.Game = "Super Mega Pie Slayer III";
 
-            MongoCRUD.DeleteTournamentById("Apple");
+            //MongoCRUD.ModifyTournamentById("Apple", model);
 
-            Console.ReadLine();
+            //var result = MongoCRUD.GetTournamentsByOwnerEmail("dpcorum@yahoo.com");
+
+            //MongoCRUD.DeleteTournamentById("Apple");
+
+            //Console.ReadLine();
 
         }
 

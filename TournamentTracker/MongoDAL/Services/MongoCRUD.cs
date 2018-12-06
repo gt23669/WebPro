@@ -261,10 +261,20 @@ namespace MongoDAL.Services
         }
         #endregion
 
-        #region Modify
-        public static void ModifyTournamentById(int tournamentId, TournamentModel changeTo)
+        #region Update
+        public static void ModifyTournamentById(string tournamentId, TournamentModel changeTo)
         {
-            throw new NotImplementedException();
+            using (MongoConnection service = new MongoConnection())
+            {
+                if(service.ActiveCollection.CountDocuments(x => x["tournamentId"] == tournamentId) != 0)
+                {
+                    service.ActiveCollection.FindOneAndReplace(x => x["tournamentId"] == tournamentId, TournamentModelToBson(changeTo));
+                }
+                else if(service.InActiveCollection.CountDocuments(x => x["tournamentId"] == tournamentId) != 0)
+                {
+                    service.InActiveCollection.FindOneAndReplace(x => x["tournamentId"] == tournamentId, TournamentModelToBson(changeTo));
+                }
+            }
         }
         #endregion
 

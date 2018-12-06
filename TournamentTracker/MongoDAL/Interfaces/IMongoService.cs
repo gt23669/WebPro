@@ -12,7 +12,6 @@ namespace MongoDAL.Interfaces
         void CreateTournament(TournamentModel tournament);
         void DeleteTournamentById(string tournamentId);
         void ModifyTournamentById(string tournamentId, TournamentModel changeTo);
-
         TournamentListModel GetAllActiveTournaments();
         TournamentListModel GetAllInactiveTournaments();
         TournamentListModel GetTournamentsByOwnerEmail(string ownerEmail);
