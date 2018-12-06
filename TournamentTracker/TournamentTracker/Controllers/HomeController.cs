@@ -32,5 +32,19 @@ namespace TournamentTracker.Controllers
         {
             return View(model);
         }
+
+        [Authorize]
+        public ActionResult Creation()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Creation(TournamentModel model)
+        {
+
+
+            return RedirectToAction("Creation");
+        }
     }
 }
