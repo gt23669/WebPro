@@ -16,8 +16,7 @@ namespace MongoDAL.Models
     public enum SecurityLevels
     {
         Open,
-        FriendsOnly,
-        InviteOnly
+        Private
     }
 
     public enum Status

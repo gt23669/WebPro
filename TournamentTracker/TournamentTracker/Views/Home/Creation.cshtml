@@ -1,0 +1,41 @@
+﻿
+
+@{
+    ViewBag.Title = "Creation";
+}
+
+<h2>Creation</h2>
+
+@using (Html.BeginForm("Creation", "Home", FormMethod.Post))
+{
+    <label>Tournament Name: </label>
+    <input type="text" name="Name" />
+
+    <label>Owner Email: </label>
+    <input type="text" name="OwnerEmail" />
+    
+    <label>Elimination Type: </label>
+    <select name="EliminationType">
+        <option value="SingleElimination">Single Elimination</option>
+        <option value="DoubleElimination">Double Elimination</option>
+        <option value="RoundRobin">Round Robin</option>
+    </select>
+    
+    <label>Security Type: </label>
+    <select name="SecurityType">
+        <option value="Open">Open</option>
+        <option value="Private">Private</option>
+    </select>
+    
+    <label>Game: </label>
+    <input type="text" name="Game" />
+    
+    <label>Admins: </label>
+    <input type="text" name="AdminList" />
+    
+    <label>Players: </label>
+    <input type="text" name="PlayerList" />
+ 
+    <label>Player Limit: </label>
+    <input type="text" name="PlayerLimit" />
+}

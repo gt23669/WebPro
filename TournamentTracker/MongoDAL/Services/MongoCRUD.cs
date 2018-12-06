@@ -20,8 +20,6 @@ namespace MongoDAL.Services
             return toReturn;
         }
 
-        private 
-
         private static BsonDocument TournamentModelToBson(TournamentModel toChange)
         {
             BsonDocument toReturn = new BsonDocument();

@@ -29,7 +29,7 @@
                     {
                         if (!User.IsInRole("Banned"))
                         {
-                            <li>@Html.ActionLink("Create Tournament", "Index", "Home")</li>
+                            <li>@Html.ActionLink("Create Tournament", "Creation", "Home")</li>
                         }
                         if (User.IsInRole("Admin"))
                         {
