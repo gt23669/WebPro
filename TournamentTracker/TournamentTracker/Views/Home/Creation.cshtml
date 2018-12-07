@@ -1,14 +1,17 @@
 ﻿@using MongoDAL.Models
+@using TournamentTracker.Services
 @model TournamentModel
 
 @{
-    //ViewBag.Title = "Creation";
+//ViewBag.Title = "Creation";
 }
 
 <div class="jumbotron">
     <h3>Create a New Tournament: </h3>
     @using (Html.BeginForm("Creation", "Home", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
     {
+        EFAuthService ef = new EFAuthService();
+
         <hr />
         @Html.ValidationSummary("", new { @class = "text-danger" })
         <div class="form-group">
@@ -39,6 +42,20 @@
             @Html.LabelFor(m => m.PlayerLimit, "Player Limit (1-32): ", new { @class = "col-md-2 control-label" })
             <div class="col-md-10">
                 @Html.TextBoxFor(m => m.PlayerLimit, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.PlayerList, "Player(s): ", new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.ListBoxFor(m => m.PlayerList, ef.UserListToSelectList(), new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.ModeratorList, "Moderator(s): ", new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @{
+                    Html.ListBoxFor(m => m.ModeratorList, ef.UserListToSelectList(), new { @class = "form-control" });
+                }
             </div>
         </div>
         <hr />

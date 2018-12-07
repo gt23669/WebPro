@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 using TournamentTracker.Data;
 
 namespace TournamentTracker.Services
@@ -64,6 +65,24 @@ namespace TournamentTracker.Services
                 db.Entry(obj).State = System.Data.Entity.EntityState.Modified;
                 db.SaveChanges();
             }
+        }
+
+        public List<SelectListItem> UserListToSelectList()
+        {
+            List<SelectListItem> users = new List<SelectListItem>();
+
+            var raw = GetAllUsers();
+
+            foreach(AspNetUser u in raw)
+            {
+                users.Add(new SelectListItem
+                {
+                    Text = u.Email,
+                    Value = u.Id
+                });
+            }
+
+            return users;
         }
     }
 }
