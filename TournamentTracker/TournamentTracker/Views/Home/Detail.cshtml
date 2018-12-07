@@ -1,6 +1,67 @@
 ﻿@using MongoDAL.Models
 @model TournamentModel
 
-<p>@Model.Name</p>
+<div class="jumbotron">
+    <h1>@Model.Name</h1>
+    <h2>"@Model.Game"</h2>
+</div>
 
-<p>@Model.Game</p>
+<div class="jumbotron">
+    <h1>Settings</h1>
+    @{ 
+        //Model.OwnerEmail = "admin@tournamenttracker.com";
+    }
+    <h2>Tournament Owner: @Model.OwnerEmail</h2>
+    <h2>Tournament Player Limit: @Model.PlayerLimit</h2>
+    @{
+        switch (Model.EliminationType)
+        {
+            case MongoDAL.Models.TournamentTypes.DoubleElimination:
+                <h2>Tournament Type: Double Elimination</h2>
+                break;
+            case MongoDAL.Models.TournamentTypes.RoundRobin:
+                <h2>Tournament Type: Round Robin</h2>
+                break;
+            case MongoDAL.Models.TournamentTypes.SingleElimination:
+                <h2>Tournamnet Type: Single Elimination</h2>
+                break;
+        }
+
+        switch (Model.SecurityType)
+        {
+            case MongoDAL.Models.SecurityLevels.Open:
+                <h2>Tournament Security: Open Tournament</h2>
+                break;
+            case MongoDAL.Models.SecurityLevels.Private:
+                <h2>Tournament Security: Private Tournament</h2>
+                break;
+        }
+    }
+    <h3>Moderator List:</h3>
+    <ul>
+        @foreach (User u in Model.ModeratorList.UserList)
+        {
+            <li>@u.Email</li>
+        }
+    </ul>
+</div>
+
+<div class="jumbotron">
+    <h1>Leaderboards</h1>
+    @foreach(User u in Model.PlayerList.UserList)
+    {
+        var rank = u.Wins / u.Loses;
+        <h2>@u.Email ~ @rank</h2>
+        <span>
+            <h4>Wins: @u.Wins</h4>
+            <h4>Losses: @u.Loses</h4>
+        </span>
+    }
+</div>
+
+@if (User.Identity.Name == Model.OwnerEmail)
+{
+    <div class="jumbotron">
+        <a class="btn btn-default" href="">Delete Tournament</a>
+    </div>
+}
