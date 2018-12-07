@@ -276,6 +276,24 @@ namespace MongoDAL.Services
                 }
             }
         }
+        
+        public static void ActiveToInactive(string tournamentId)
+        {
+            using (MongoConnection service = new MongoConnection())
+            {
+                if(service.ActiveCollection.CountDocuments(x => x["tournamentId"] == tournamentId) != 0)
+                {
+                    service.InActiveCollection.InsertOne(service.ActiveCollection.Find(x => x["tournamentId"] == tournamentId).ToList()[0]);
+                    service.ActiveCollection.FindOneAndDelete(x => x["tournamentId"] == tournamentId);
+
+                    var model = BsonToTournamentModel(service.InActiveCollection.Find(x => x["tournamentId"] == tournamentId).ToList()[0]);
+                    model.StatusType = Status.Ended;
+                    ModifyTournamentById(tournamentId, model );
+
+                }
+            }
+        }
+
         #endregion
 
         #region Delete
@@ -293,6 +311,9 @@ namespace MongoDAL.Services
                 }
             }
         }
+        
+        
+        
         #endregion
     }
 }

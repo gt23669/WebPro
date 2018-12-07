@@ -83,7 +83,9 @@ namespace MongoTestConsole
 
             };
 
-            //MongoCRUD.CreateTournament(model);
+            MongoCRUD.CreateTournament(model);
+
+            MongoCRUD.ActiveToInactive(model.TournamentId);
 
             //model.Game = "Super Mega Pie Slayer III";
 
