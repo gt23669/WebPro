@@ -1,6 +1,20 @@
 ﻿@using MongoDAL.Models
 @model TournamentModel
 
-<p>@Model.Name</p>
+<div class="jumbotron">
+    <h1>@Model.Name</h1>
+    <h2>"@Model.Game"</h2>
+</div>
 
-<p>@Model.Game</p>
+<div class="jumbotron">
+    <h1>Leaderboards: </h1>
+    @foreach(User u in Model.PlayerList.UserList)
+    {
+        var rank = u.Wins / u.Loses;
+        <h2>@u.Email ~ @rank</h2>
+        <span>
+            <h4>Wins: @u.Wins</h4>
+            <h4>Losses: @u.Loses</h4>
+        </span>
+    }
+</div>
