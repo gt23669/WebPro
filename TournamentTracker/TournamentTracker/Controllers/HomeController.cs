@@ -28,8 +28,10 @@ namespace TournamentTracker.Controllers
             return View(model);
         }
 
-        public ActionResult Detail(TournamentModel model)
+        public ActionResult Detail(string tournamentId)
         {
+            var model =  MongoCRUD.GetTournamentById(tournamentId);
+
             return View(model);
         }
 

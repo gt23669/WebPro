@@ -236,7 +236,7 @@ namespace MongoDAL.Services
             using (MongoConnection service = new MongoConnection())
             {
 
-                var results = service.ActiveCollection.Find(c => ((string)c["tournamentId"]).ToUpper() == tournamentId.ToUpper() && !string.IsNullOrEmpty((string)c["tournamentId"])).ToList();
+                var results = service.ActiveCollection.Find(c => c["tournamentId"] == tournamentId).ToList();
                 if (results.Count == 0)
                 {
                     results = service.InActiveCollection.Find(c => ((string)c["tournamentId"]).ToUpper() == tournamentId.ToUpper() && !string.IsNullOrEmpty((string)c["tournamentId"])).ToList();
