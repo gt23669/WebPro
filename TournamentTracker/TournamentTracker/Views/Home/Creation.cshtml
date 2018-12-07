@@ -1,41 +1,51 @@
-﻿
+﻿@using MongoDAL.Models
+@model TournamentModel
 
 @{
-    ViewBag.Title = "Creation";
+    //ViewBag.Title = "Creation";
 }
 
-<h2>Creation</h2>
-
-@using (Html.BeginForm("Creation", "Home", FormMethod.Post))
-{
-    <label>Tournament Name: </label>
-    <input type="text" name="Name" />
-
-    <label>Owner Email: </label>
-    <input type="text" name="OwnerEmail" />
-    
-    <label>Elimination Type: </label>
-    <select name="EliminationType">
-        <option value="SingleElimination">Single Elimination</option>
-        <option value="DoubleElimination">Double Elimination</option>
-        <option value="RoundRobin">Round Robin</option>
-    </select>
-    
-    <label>Security Type: </label>
-    <select name="SecurityType">
-        <option value="Open">Open</option>
-        <option value="Private">Private</option>
-    </select>
-    
-    <label>Game: </label>
-    <input type="text" name="Game" />
-    
-    <label>Admins: </label>
-    <input type="text" name="AdminList" />
-    
-    <label>Players: </label>
-    <input type="text" name="PlayerList" />
- 
-    <label>Player Limit: </label>
-    <input type="text" name="PlayerLimit" />
-}
+<div class="jumbotron">
+    <h3>Create a New Tournament: </h3>
+    @using (Html.BeginForm("Creation", "Home", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+    {
+        <hr />
+        @Html.ValidationSummary("", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(m => m.Name, "Tournament Name: ", new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.EliminationType, "Elimination Type: ", new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.EnumDropDownListFor(m => m.EliminationType, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.SecurityType, "Security Type: ", new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.EnumDropDownListFor(m => m.SecurityType, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Game, "Game Name: ", new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.Game, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.PlayerLimit, "Player Limit (1-32): ", new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.PlayerLimit, new { @class = "form-control" })
+            </div>
+        </div>
+        <hr />
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-8">
+                <input type="submit" value="Create Tournament" class="btn btn-default" />
+            </div>
+        </div>
+    }
+</div>

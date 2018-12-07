@@ -44,7 +44,9 @@ namespace TournamentTracker.Controllers
         [HttpPost]
         public ActionResult Creation(TournamentModel model)
         {
+            model.OwnerEmail = User.Identity.Name;
 
+            var temp = model;
 
             return RedirectToAction("Creation");
         }
