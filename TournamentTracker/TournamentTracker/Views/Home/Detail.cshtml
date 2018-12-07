@@ -8,6 +8,9 @@
 
 <div class="jumbotron">
     <h1>Settings</h1>
+    @{ 
+        //Model.OwnerEmail = "admin@tournamenttracker.com";
+    }
     <h2>Tournament Owner: @Model.OwnerEmail</h2>
     <h2>Tournament Player Limit: @Model.PlayerLimit</h2>
     @{
@@ -55,3 +58,10 @@
         </span>
     }
 </div>
+
+@if (User.Identity.Name == Model.OwnerEmail)
+{
+    <div class="jumbotron">
+        <a class="btn btn-default" href="">Delete Tournament</a>
+    </div>
+}
