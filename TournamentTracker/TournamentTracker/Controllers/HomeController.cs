@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using MongoDAL;
 using MongoDAL.Models;
 using MongoDAL.Services;
+using TournamentTracker.Services;
 
 namespace TournamentTracker.Controllers
 {
@@ -58,6 +59,8 @@ namespace TournamentTracker.Controllers
                 players.UserList.Add(new MongoDAL.Models.User()
                 {
                     Email = grabbedUser.Email,
+                    FirstName = "first",
+                    LastName = "last",
                     Loses = 0,
                     Wins = 0
                 });
@@ -74,6 +77,8 @@ namespace TournamentTracker.Controllers
                 moderators.UserList.Add(new MongoDAL.Models.User()
                 {
                     Email = grabbedUser.Email,
+                    FirstName = "first",
+                    LastName = "last",
                     Loses = 0,
                     Wins = 0
                 });
@@ -81,9 +86,13 @@ namespace TournamentTracker.Controllers
 
             model.ModeratorList = moderators;
 
+            model.TournamentId = Guid.NewGuid().ToString();
+
             var temp = model;
 
-            return RedirectToAction("Creation");
+            MongoCRUD.CreateTournament(temp);
+
+            return Redirect("~/Home/Detail?tournamentid="+temp.TournamentId);
         }
     }
 }

@@ -50,7 +50,13 @@
     <h1>Leaderboards</h1>
     @foreach(User u in Model.PlayerList.UserList)
     {
-        var rank = u.Wins / u.Loses;
+        var rank = 0;
+
+        if (u.Loses != 0)
+        {
+            rank = u.Wins / u.Loses;
+        };
+
         <h2>@u.Email ~ @rank</h2>
         <span>
             <h4>Wins: @u.Wins</h4>
@@ -60,10 +66,3 @@
         </span>
     }
 </div>
-
-@if (User.Identity.Name == Model.OwnerEmail)
-{
-    <div class="jumbotron">
-        <a class="btn btn-default" href="">Delete Tournament</a>
-    </div>
-}
