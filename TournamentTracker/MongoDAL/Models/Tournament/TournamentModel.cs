@@ -128,6 +128,49 @@ namespace MongoDAL.Models
             return StatusType == Status.Ended;
         }
 
+
+        public static TournamentModel GetRandomizedTournament()
+        {
+            Random rand = new Random();
+
+            string id = "";
+            string game = "";
+            for (int i = 0; i < 20; i++)
+            {
+                id.Append((char)rand.Next(48, 122));
+                game.Append((char)rand.Next(48, 122));
+            }
+
+            char chara = (char)rand.Next();
+            string Owner = "";
+
+            TournamentModel TM = new TournamentModel()
+            {
+                TournamentId = id,
+                OwnerEmail = Owner,
+                Name = id,
+                EliminationType = (TournamentTypes)rand.Next(0, 3),
+                SecurityType = (SecurityLevels)rand.Next(0, 2),
+                Game = game,
+                ModeratorList = new UserListModel() {
+                    UserList = new List<User>() {
+                        new User()
+                        {
+                            Email = "J@J.com",
+                            FirstName = "J",
+                            LastName = "J",
+                            Wins = 2,
+                            Loses = 1
+                        }} },
+                PlayerList = new UserListModel(),
+                PlayerWinLossTotals = new List<KeyValuePair<User, ScoreCard>>(),
+                StatusType = (Status)rand.Next(0, 4),
+                playerLimit = 32,
+            };
+
+            return TM;
+        }
+
         #endregion
 
     }

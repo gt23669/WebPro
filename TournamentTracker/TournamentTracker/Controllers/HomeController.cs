@@ -42,8 +42,10 @@ namespace TournamentTracker.Controllers
         }
 
         [HttpPost]
-        public ActionResult Creation(TournamentModel model)
+        public ActionResult Creation(TournamentModel model,string[] PlayerList, string[] ModeratorList)
         {
+
+            //var test = Request.Form["ModeratorList"];
             model.OwnerEmail = User.Identity.Name;
 
             var temp = model;
