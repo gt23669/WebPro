@@ -44,13 +44,44 @@ namespace TournamentTracker.Controllers
         [HttpPost]
         public ActionResult Creation(TournamentModel model,string[] PlayerList, string[] ModeratorList)
         {
+            EFAuthService ef = new EFAuthService();
 
             //var test = Request.Form["ModeratorList"];
             model.OwnerEmail = User.Identity.Name;
 
+            UserListModel players = new UserListModel();
+
+            foreach (string player in PlayerList)
+            {
+                var grabbedUser = ef.GetUserFromId(player);
+
+                players.UserList.Add(new MongoDAL.Models.User()
+                {
+                    Email = grabbedUser.Email,
+                    Loses = 0,
+                    Wins = 0
+                });
+            }
+
+            model.PlayerList = players;
+
+            UserListModel moderators = new UserListModel();
+
+            foreach (string moderator in ModeratorList)
+            {
+                var grabbedUser = ef.GetUserFromId(moderator);
+
+                moderators.UserList.Add(new MongoDAL.Models.User()
+                {
+                    Email = grabbedUser.Email,
+                    Loses = 0,
+                    Wins = 0
+                });
+            }
+
+            model.ModeratorList = moderators;
+
             var temp = model;
-            model.TournamentId = Guid.NewGuid().ToString();
-            MongoCRUD.CreateTournament(temp);
 
             return RedirectToAction("Creation");
         }
