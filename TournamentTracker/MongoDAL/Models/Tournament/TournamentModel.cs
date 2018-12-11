@@ -141,15 +141,13 @@ namespace MongoDAL.Models
                 game.Append((char)rand.Next(48, 122));
             }
 
-            string chara = rand.Next()
+            char chara = (char)rand.Next();
             string Owner = "";
 
             TournamentModel TM = new TournamentModel()
             {
-
-
                 TournamentId = id,
-                OwnerEmail = Owner;
+                OwnerEmail = Owner,
                 Name = id,
                 EliminationType = (TournamentTypes)rand.Next(0, 3),
                 SecurityType = (SecurityLevels)rand.Next(0, 2),

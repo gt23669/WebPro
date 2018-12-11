@@ -53,9 +53,7 @@
         <div class="form-group">
             @Html.LabelFor(m => m.ModeratorList, "Moderator(s): ", new { @class = "col-md-2 control-label" })
             <div class="col-md-10">
-                @{
-                    Html.ListBoxFor(m => m.ModeratorList, ef.UserListToSelectList(), new { @class = "form-control" });
-                }
+                @Html.ListBoxFor(m => m.ModeratorList, ef.UserListToSelectList(), new { @class = "form-control" })
             </div>
         </div>
         <hr />
