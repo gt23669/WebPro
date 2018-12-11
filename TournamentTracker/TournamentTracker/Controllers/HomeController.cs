@@ -47,6 +47,8 @@ namespace TournamentTracker.Controllers
             model.OwnerEmail = User.Identity.Name;
 
             var temp = model;
+            model.TournamentId = Guid.NewGuid().ToString();
+            MongoCRUD.CreateTournament(temp);
 
             return RedirectToAction("Creation");
         }

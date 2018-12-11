@@ -54,7 +54,9 @@
         <h2>@u.Email ~ @rank</h2>
         <span>
             <h4>Wins: @u.Wins</h4>
+            @*<input type="button" value="+" onclick="location.href='@Url.Action("UpdateWins", "Home", new { user = u })'" />*@
             <h4>Losses: @u.Loses</h4>
+            @*<input type="button" value="+" onclick="location.href='@Url.Action("UpdateLoses", "Home", new { user = u })'" />*@
         </span>
     }
 </div>

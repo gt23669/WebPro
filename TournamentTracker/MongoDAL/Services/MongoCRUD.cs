@@ -18,6 +18,8 @@ namespace MongoDAL.Services
         #region ModelToBson
         private static BsonDocument UserToBson(User user)
         {
+            user = user ?? new User();
+
             BsonDocument toReturn = new BsonDocument();
 
             toReturn["email"] = user.Email;
@@ -31,6 +33,8 @@ namespace MongoDAL.Services
 
         private static BsonArray UserListModelToBson(UserListModel users)
         {
+            users = users ?? new UserListModel();
+
             BsonArray toReturn = new BsonArray();
 
             foreach (var user in users.UserList)
@@ -43,6 +47,8 @@ namespace MongoDAL.Services
 
         private static BsonArray ScoreCardToBson(ScoreCard card)
         {
+            card = card ?? new ScoreCard();
+
             BsonArray toReturn = new BsonArray();
 
             foreach (var item in card.RoundAndScores)
@@ -58,6 +64,10 @@ namespace MongoDAL.Services
 
         private static BsonArray PlayerWinLossTotalsToBson(List<KeyValuePair<User, ScoreCard>> winLossTotal)
         {
+
+
+            winLossTotal = winLossTotal ?? new List<KeyValuePair<User, ScoreCard>>();
+
             BsonArray toReturn = new BsonArray();
 
             foreach (var total in winLossTotal)
